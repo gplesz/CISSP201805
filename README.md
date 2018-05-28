@@ -292,10 +292,72 @@ Addig, amíg alacsonyabb szinten van végrehajtandó folyamat, addig a magasabb 
 - **Stopped:** A folyamat véget ért. Vagy azért, mert végzett, vagy mert meg kellett szakítani (hiba, esetleg nem elérhető erőforrás miatt). Ilyenkor a folyamatunkhoz hozzárendelt erőforrások elvonhatók és újraoszthatók.
 - **Supervisory:** Amikor a folyamat végrehajtásához magasabb jogok kellenek (egy körrel beljebb kell hozzá kerülni).
 
+#### Memory
+- ROM: Read Only Memory
+- PROM: Programmably Read Only Memory
+- EPROM: Erasable Programmable Read Only Memory
+- EEPROM: Electronically Erasable Programmable Memory
+- Flash: blokkonként törölhető EEPROM
+- RAM: Random Access Memory: áram kell neki, hogy megtartsa a beleírt adatot
+  - dinamic: kapacitásokból áll, ami idővel elveszíti a töltését, így a processzornak frissítenie kell időről időre a tartalmat.
+  - static: flip-flop áramkörökből áll, amíg áram alatt van nem felejt, a processzornak nem kell frissítést végeznie. Drágább és gyorsabb eszköz. Cache memória: az L1 a processzoron van, az L" pedig static RAM.
 
+```
+   Egy lap 256 helyet tartalmaz
++--------------------------------+
+|                                |
+|     RAM                        |
+|                                |
+|                                |
+|  +------------------------+    |
+|  | 0|255 bináris szám     |    |
+|  +------------------------+    |
+|  | 0|255 bináris szám     |    |
+|  +------------------------+    |
+|  | 0|255 bináris szám     |    |
+|  +------------------------+    |
+|  | 0|255 bináris szám     |    |
+|  +------------------------+    |
+|  | 0|255 bináris szám     |    |
+|  +------------------------+    |
+|  | 0|255 bináris szám     |    |
+|  +------------------------+    |
+|  | 0|255 bináris szám     |    |
+|  +------------------------+    |
+|  | 0|255 bináris szám     |    |
+|  +------------------------+    |
+|                                |
++--------------------------------+
+```
 
+Ha például 8 bites rendszerünk van, akkor egy memóriahelyre (imt önállóan lehet címezni, tehát bele írni és belőle olvasni) 256 féle érték kerülhet. Így 256 féle címet tartalmazhat. Ha több, mint 256 helyünk van, akkor a memóriát 256 egységes **lapokra** osztjuk, és a címek két részből állnak: a lap címéből, és a lapon belül a memóriahely címéből.
 
+#### Registers
+Spceiális memóriák, a processzor végrehajtási egységével (ALU: Arithmetic-logical unit) szinkron sebességgel dolgoznak. Rajtuk keresztül kapja a processzor az adatokat, a segítségükkel végzi a műveletet.
 
+- **Register addressing:** amikor a processzor a regisztert célozza (címzi). Például: **register 1**
+- **Inmediate addressing:** közvetlen műveletvégzés, register segítségével Például: **add 2 to register 1**
+- **Direct addressing:** a regiszterben a memóriahely címe van, amivel dolgozni kell. **Ezen a memóriahelyen van az adat** a számoláshoz. Ez a cím a végrehajtandó utasítással egy lapon van. (különben két rész kéne a címhez: lapcím (base) és azon belül a memória címe (offset))
+- **Indirect addressing:** a register által megcímzett memóriahely nem adat van, hanem egy újabb cím, ami az adatot tartalmazza a művelethez. (A cím egy lapon van a paranccsal.)
+- **Base+Offset addressing:** amikor az adat nincs azonos lapn a művelettel, akkor agy a lapcím + lapon belüli memóriacím párossal jutunk el az adatig.
+
+#### Primary, Secondary storage
+- **Primary:** olyan memória, amit regiszter műveletekkel elérünk. Ez a "valódi" memória. *Gyors és drága*
+- **Secondary:** először be kell tölteni a primary storage -be használathoz. *Lassú és olcsó*.
+
+- **Virtual memory**, **virtual storage**: az operációs rendszer kezeli, segítségével elsődlegesnek látszik.
+
+#### I/O devices
+- Monitor
+- Printer
+- Keyboard/Mouse
+- Modems
+  - Memory-mapped I/O
+  - IRQ
+  - DMA
+- Firmware
+  - BIOS
+  - Device firmware
 
 ## Adatbázisok
 
