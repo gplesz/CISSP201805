@@ -41,7 +41,7 @@ Következő generációs (SMP) multiprocessing: többmagos processzorok segíts�
 ##### párhuzamos programozás (multiprogramming)
 Az alkalmazást írjuk úgy, hogy képes legyen több feladat egyidejű számolására. Ez inkább a régi mainframe-ek sajátja.
 
-##### töbszálú feladat végrehajtás (multithreding)
+##### töbszálú feladat végrehajtás (multithreading)
 A modern operációs rendszerek (Windows/Linux) képes egy folyamaton belül (process) párhozamos "szálakat" (thread) szolgáltatni, aminek az az értelme, hogy thread-ek közötti feladatváltás sokkal kevesebb processzorutasításból oldható meg (50 utasítás) mint az egyes processzek közötti váltás (1000 utasítás).
 
 
@@ -101,6 +101,8 @@ A process saját memóriával rendelkezik, a thread-eknek nincs saját memóriá
                                                                                                   +
                                                                                                   Call Stack
 ```
+
+###### Multithread programozás demo
 
 ## Adatbázisok
 
