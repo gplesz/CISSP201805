@@ -25,36 +25,24 @@ namespace MultithreadDemo
             //a dotnet beépített thread kezelése
             //ezen keresztül kérhetünk egy futtatási szálat.
             ThreadPool.QueueUserWorkItem(Adatfeldolgozas);
-            ThreadPool.QueueUserWorkItem(Chatkiszolgalas);
+            ThreadPool.QueueUserWorkItem(Adatfeldolgozas);
+            ThreadPool.QueueUserWorkItem(Adatfeldolgozas);
+            ThreadPool.QueueUserWorkItem(Adatfeldolgozas);
+            ThreadPool.QueueUserWorkItem(Adatfeldolgozas);
+            ThreadPool.QueueUserWorkItem(Adatfeldolgozas);
+            ThreadPool.QueueUserWorkItem(Adatfeldolgozas);
+            ThreadPool.QueueUserWorkItem(Adatfeldolgozas);
+            ThreadPool.QueueUserWorkItem(Adatfeldolgozas);
+            ThreadPool.QueueUserWorkItem(Adatfeldolgozas);
 
             Console.ReadLine();
             Console.WriteLine("Alkalmazás véget ért!");
         }
 
-        /// <summary>
-        /// Saját szálon futó folyamat, nem kell törődnöm azzal, hogy 
-        /// a program többi része hol tart.
-        /// </summary>
-        /// <param name="state"></param>
-        private static void Chatkiszolgalas(object state)
-        {
-            System.Console.WriteLine("- - -> Chatkiszolgálás elindult");
-            for (int i = 0; i < 1000; i++)
-            {
-                Thread.Sleep(200);
-                System.Console.WriteLine("- - -> Chatkiszolgálás folyamatban");
-            }
-            System.Console.WriteLine("- - -> Chatkiszolgálás véget ért");
-        }
-
         private static void Adatfeldolgozas(object state)
         {
             System.Console.WriteLine("- -> Adatfeldolgozás elindult");
-            for (int i = 0; i < 1000; i++)
-            {
-                Thread.Sleep(500);
-                System.Console.WriteLine("- -> Adatfeldolgozás folyamatban");
-            }
+            Thread.Sleep(5000);
             System.Console.WriteLine("- -> Adatfeldolgozás véget ért");
         }
     }

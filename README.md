@@ -161,6 +161,46 @@ class Program
     }
 }
 ```
+###### Multithread programozás demo 2.
+
+```csharp
+static void Main(string[] args)
+{
+    Console.WriteLine("Alkalmazás elindult!");
+
+    //a dotnet beépített thread kezelése
+    //ezen keresztül kérhetünk egy futtatási szálat.
+    ThreadPool.QueueUserWorkItem(Adatfeldolgozas);
+    ThreadPool.QueueUserWorkItem(Adatfeldolgozas);
+    ThreadPool.QueueUserWorkItem(Adatfeldolgozas);
+    ThreadPool.QueueUserWorkItem(Adatfeldolgozas);
+    ThreadPool.QueueUserWorkItem(Adatfeldolgozas);
+    ThreadPool.QueueUserWorkItem(Adatfeldolgozas);
+    ThreadPool.QueueUserWorkItem(Adatfeldolgozas);
+    ThreadPool.QueueUserWorkItem(Adatfeldolgozas);
+    ThreadPool.QueueUserWorkItem(Adatfeldolgozas);
+    ThreadPool.QueueUserWorkItem(Adatfeldolgozas);
+
+    Console.ReadLine();
+    Console.WriteLine("Alkalmazás véget ért!");
+}
+
+private static void Adatfeldolgozas(object state)
+{
+    System.Console.WriteLine("- -> Adatfeldolgozás elindult");
+    Thread.Sleep(5000);
+    System.Console.WriteLine("- -> Adatfeldolgozás véget ért");
+}
+```
+A program futtatásakor látszik, hogy az első négy szál azonnal elindul (mivel a gép ahol futtatom négymagos processzor köré épült), majd szépen lassan a többi szál is elindul, de annak idő kell.
+
+Megjegyzések:
+
+- kód párhozamos futtatásához nem kell semmilyen különleges programozási módszertan, a futtatókörnyezet (.NEt + OS) szolgáltatja.
+
+- a párhuzamosság miatt csak akkor kell párhuzamos helyzeteket megoldani, ha a szálaknak együtt kell működnie.s
+
+
 
 ## Adatbázisok
 
