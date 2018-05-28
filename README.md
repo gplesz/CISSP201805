@@ -218,6 +218,84 @@ Egyszerre többféle besorolásnak megfelelő hozzáférést képes kezelni a re
 Ez a mechanizmus nagyon költséges, és az ilyen rendszerek nagyon drágák. Az MPP rendszerek közül egyes drága rendszerekben van olyan indok, ami értelmessé teszi ezt a kialakítást.
 
 #### Protection rings
+1963, Multics operációs rendszer készítésekor a MIT, a Bell Laboratórium és a General Electric fejlesztése.
+A Unix operációs rendszer fejlesztéséhez is ez az alapelv, és modern OS-ek alapelve.
+
+```
++-----------------------------------------------+
+|                                               |
+|      User-level programs and applications     |
+|      (Ring 3)                                 |
+|                                               |
+|    +-------------------------------------+    |
+|    |      Drivers, protocols             |    |
+|    |      (Rind 2)                       |    |
+|    |                                     |    |
+|    |   +---------------------------+     |    |
+|    |   |  Other OS komonents       |     |    |
+|    |   |  (Ring 1)                 |     |    |
+|    |   |                           |     |    |
+|    |   | +--------------------+    |     |    |
+|    |   | |                    |    |     |    |
+|    |   | |  OS kernel/memory  |    |     |    |
+|    |   | |  (Ring 0)          |    |     |    |
+|    |   | |                    |    |     |    |
+|    |   | +--------------------+    |     |    |
+|    |   |                           |     |    |
+|    |   |                           |     |    |
+|    |   +---------------------------+     |    |
+|    |                                     |    |
+|    +-------------------------------------+    |
+|                                               |
++-----------------------------------------------+
+```
+Addig, amíg alacsonyabb szinten van végrehajtandó folyamat, addig a magasabb szinten lévő folyamat nem kap végrehajtási lehetőséget.
+
+- Ring 0-2: Privileged 
+- Ring 3: User
+
+#### Folyamat állapotok (Process states)
+
+```
+                                                                        +----------+
+                    Process needs another time slice                    |          |
++-------------+   <------------------<------------------+               |  Stopped |
+|             |   |                                     |               |          |
+| New process |   |                                     |               +-----+----+
+|             |   |                                     |                     ^
++---+---------+   |                                     |        When process |
+    |             v                                     +        finished or  |
+    |                                                            terminated   |
+    |         +-------+   If CPU is available      +---------+                |
+    |         |       |                            |         |                |
+    +-------->+ Ready +--------------------------->+ Running +---------------->
+              |       |                            |         |
+              +-------+                  +-------> +----+----+
+                                         |              |
+                             Unblocked   |              |
+                                         |              |  block for I/O,
+                                         |              |  resources
+                                         |              |
+                                         +              |
+                                                        |
+                                    +---------+         |
+                                    |         |         |
+                                    | Waiting |  <------+
+                                    |         |
+                                    +---------+
+
+```
+
+- **Ready:** (a folyamat) végrehajtásra kész. Ha lesz szabad processzor, akkor ezt a folyamatot végre is hajthatja. A hozzárendelt erőforrások ki vannak osztva neki.
+- **Waiting:** Külső erőforrásra vár. A futása addig blokkolódik, amíg az erőforrás hozzárendelése megtörténik.
+- **Running:** A folyamatot a CPU végrehajtja. Addig tart, amíg a) folyamot véget ér, vagy b) le nem jár az időszelete, vagy c) a folyamat erőforrásigény miatt blokkolt állapotba kerül.
+- **Stopped:** A folyamat véget ért. Vagy azért, mert végzett, vagy mert meg kellett szakítani (hiba, esetleg nem elérhető erőforrás miatt). Ilyenkor a folyamatunkhoz hozzárendelt erőforrások elvonhatók és újraoszthatók.
+- **Supervisory:** Amikor a folyamat végrehajtásához magasabb jogok kellenek (egy körrel beljebb kell hozzá kerülni).
+
+
+
+
+
 
 ## Adatbázisok
 
