@@ -2,3 +2,11 @@
 A NetAcademia 2018 májusi CISSP tanfolyam kiegészítő kódtára
 
 ## Szoftverfejlesztés és adatbázisok
+
+## Computing Systems
+A biztonsági kérdéseket fontos áttekinteni a számítógépes architektúra területén.
+
+
+## Adatbázisok
+
+## Szoftverfejlesztés
