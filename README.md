@@ -440,6 +440,8 @@ Partner tábla
   - az azonosításhoz használhatunk több mező kombinációját is (Composite Key)
 - **Foreign Key (FK)** (távoli kulcs): ami egy másik táblában egy PK mezőre "mutat". 
 
+Összegek tábla
+---
 |Partner 1| Partner 2| Összeg |
 |-|-|-|
 |1|2|+5000|
@@ -452,10 +454,67 @@ Azt jelenti, hogy az adatok redundanciájának csökkententése illetve az integ
 
 [Ebben a cikkben](https://www.lifewire.com/database-normalization-basics-1019735) röviden az egyes normálformákról lehet olvasni.
 
+##### Gyakorlati példa
 
+Ha helyi SQL adatbázison dologzunk, akkor létre kell hozni az adatbázist és utána ki is kell választani, így:
 
+```sql
+--adatbázis létrehozása
+create database CISSP2018
+go
 
+--a létrehozott adatbázist kiválasztjuk
+use CISSP2018
+go
+```
 
+ez után, vagy pedig ha az [SQLFiddle](http://sqlfiddle.com) oldalon próbáljuk ki a kódot, akkor nem kell létrehozás, csak ami most jön:
+
+```sql
+--két tábla létrehozása
+create table Partnerek (
+	Kulcs int not null primary key clustered,
+	Nev nvarchar(50),
+	Cim nvarchar(50)
+)
+go
+
+create table Osszegek (
+	Kulcs int not null primary key clustered,
+	Partner1 int,
+	Partner2 int,
+	Osszeg int,
+	constraint fk_osszegek_partnerek1 foreign key (Partner1) references Partnerek (Kulcs),
+	constraint fk_osszegek_partnerek2 foreign key (Partner2) references Partnerek (Kulcs)
+)
+go
+```
+
+Figyelem, ezt a két scriptet egyszerre kell az SQLFiddle-ben használni.
+
+```sql
+--ezt követően fel kell tölteni adatokkal
+insert Partnerek values (1, 'Gipsz Jakab', '1000 Budapest')
+go
+
+insert Partnerek values (2, 'Nagy Zoltán', '2000 Szentendre')
+go
+
+insert Partnerek values (3, 'Kiss Tamás', '1200 Budapest')
+go
+
+insert Osszegek values (1,2,5000)
+go
+
+insert Osszegek values (1,3,7000)
+go
+
+insert Osszegek values (2,3,-3000)
+go
+
+insert Osszegek values (3,1,4000)
+go
+```
 
 
 
