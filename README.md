@@ -516,7 +516,22 @@ insert Osszegek values (4,3,1,4000)
 go
 ```
 
+Példa az eredeti adatcsomag lekérdezhetőségére:
 
+```sql
+--lekérdezzük az adatokat DQL: Data Query language
+select
+  Partnerek1.Nev,
+  Partnerek1.Cim,
+  Partnerek2.Nev,
+  Partnerek2.Cim,
+  Osszegek.Osszeg
+from
+  Osszegek
+  inner join Partnerek Partnerek1 on Partnerek1.Kulcs = Partner1
+  inner join Partnerek Partnerek2 on Partnerek2.Kulcs = Partner2
+  
+```
 
 
 
