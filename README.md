@@ -413,15 +413,43 @@ Például egy partnereket és a hozzájuk tartozó pénzmozgásokat nyilvántart
 |-|-|-|-|-|
 |Gipsz Jakab|1000 Budapest|Nagy Zoltán|2000 Szentendre|+5000|
 |Gipsz Jakab|1000 Budapest|Kiss Tamás |1200 Budapest|+7000|
-|Nagy Zoltán|1000 Budapest|Kiss Tamás |1200 Budapest|-3000|
+|Nagy Zoltán|2000 Szentendre|Kiss Tamás |1200 Budapest|-3000|
 |Kiss Tamás|1000 Budapest|Gipsz Jakab |1200 Budapest|+4000|
 
-
 #### SQL Szolgáltatásai
+- adatok táblázatban
+    - vizszintesen: sorok, rekordok (row=record=tuple)
+    - függőlegesen: oszlopok, mezők (column=field=attribute)
+- vizszintes irányban a táblázat struktúrája ritkán változik, függőleges irányban pedig állandóan. Az adatbáziskezelő munkájának nagy része a sorok létrehozásával, módosításával, lekérdezésével és törlésével telik.
 
+ebből az adathalmazból a relációs adatbázis világban a következő struktúrát gyártjuk:
 
+Partner tábla
+---
+|Kulcs|Név|Cím|
+|-|-|-|
+|1|Gipsz Jakab|1000 Budapest|
+|2|Nagy Zoltán|2000 Szentendre|
+|3|Kiss Tamás|1200 Budapest|
 
+##### Kulcsok (Keys)
+- **Candidate Key** (lehetséges kulcsmező): a rendelkezésünkre álló adatok alapján képes egy sort azonosítani.
+- **Primary Key (PK)** (elsődleges kulcs): ami egyértelműen azonosítja a sort.
+  - lehet Identity (nővekvő egész szám), ezt az adatbázis adja
+  - lehet (GUID: Globally Uniq IDentifier): egy speciálisan számolt érték, az a lényege, hogy minden GUILD a világon egyedüliként jön létre. Ezt számolhatja a kliens és az adatbázis is.
+  - az azonosításhoz használhatunk több mező kombinációját is (Composite Key)
+- **Foreign Key (FK)** (távoli kulcs): ami egy másik táblában egy PK mezőre "mutat". 
 
+|Partner 1| Partner 2| Összeg |
+|1|2|+5000|
+|1|3|+7000|
+|2|3|-3000|
+|3|1|+4000|
+
+##### Adatbázisok normalizálása
+Azt jelenti, hogy az adatok redundanciájának csökkententése illetve az integritásának növelése céljából alakítjuk az adattáblák struktúráját. A folyamat szabványosított, normálformák írják le, hogy milyen feltételeknek kell az adatbázisban érvényesülni, hogy azt mondhassuk, hogy 1NF->2NF->3NF->4NF.
+
+[Ebben a cikkben](https://www.lifewire.com/database-normalization-basics-1019735) röviden az egyes normálformákról lehet olvasni.
 
 
 
