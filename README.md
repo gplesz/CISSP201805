@@ -359,6 +359,78 @@ Spceiális memóriák, a processzor végrehajtási egységével (ALU: Arithmetic
   - BIOS
   - Device firmware
 
-## Adatbázisok
+## Adatbázisok (Databases)
+Az adatok kiegészítve a hozzáférés módjával. Vagyis az adatok mellett az alkalmazás is, ami a felhasználó számára lehetővé teszi, hogy az adatokat lekérdezze, létrehozza, módosítsa, törölje. 
+
+DBMS: Database Managamant Systems
+- a program, ami a felhasználó számára lehetővé teszi, hogy az adatokat lekérdezze, létrehozza, módosítsa, törölje az adatokat.
+- adatok mentése és visszatöltése (Backup and Recovery)
+- lekérdező nyelv biztosítása (SQL)
+    - SQL/DQL: Data Query Language
+    - SQL/DML: Data Manipulation Language
+- az adatbázis struktúrájának a kezelő nyelve (SQL/DDL: Data Definition Language)
+- az adatok hozzáférésének a szabályozása (SQL/DCL: Data Control language)
+
+### Hierarchikus adatbázisok (Hierarchical Databases)
+A hierarchikus adatbázis fa struktúrájú adatok nyilvántartására készült.
+
+Példa:
+```
+                <-------------------+  Vezérigazgató +------------------->
+                |                            +                           |
+                |                            |                           |
+                v                            v                           v
+          Értékesítés                 <-+ Számlázás +->+             Logisztika
+               +                      |                |                 +
+               |                      |                |                 |
+               v                      v                v                 v
+Értékesítési vezető                 Számlázó 1   Számlázó 2          Raktáros
+
+```
+Másik példa a DNS: Domain Name System.
+
+felső szintű domainek: .hu, .com, stb.
+
+www.netacademia.hu 
+
+Minden csomópontnak egy szülője és tetszőleges számú gyermek csomópontja lehet, vagyis, egy-a-többhöz adatokat kezel.
+
+### Elosztott adatbázisok (Distributed Databases)
+A felhasználó számára egy rendszernek látszik, az adatok egymástól elválasztva több fizikai helyszínen vannak. Az egyes objektumoknak több szülője és több gyermeke is lehet, vagyis több-a-többhöz adatok nyilvántartására szolgál. A faceboook ismerősi hálózata például ilyen adatbázis.
+
+### Objektumorientált/Objektumrelációs adatbázisok (Object oriented Databases)
+Az objektum orientált programozási alapelvek összekombinálása az adatok nyilvántartásával, ennek köszönhetően az adatok egységbezárása és leszármaztatása az adatbázison belül megvalósítható. A kód újrafelhasználhatóságát és a hibakeresést is jól támogatja. Sokkal alkalmasabb multimédiás, CAD, grafikai és szakértői rendszerek támogatásához.
+
+### Reláció adatbázisok (Relational Databases)
+IBM, 1970, Codd. SEQUEL: Structured English Query Language. 
+
+A relációs adatbázis un. relációkat (relation) (adattáblákat) kezel.
+
+Például egy partnereket és a hozzájuk tartozó pénzmozgásokat nyilvántartó táblázat
+
+---
+|Név|Cím|Partner név|Partner cím|Összeg|
+|-|-|-|-|-|
+|Gipsz Jakab|1000 Budapest|Nagy Zoltán|2000 Szentendre|+5000|
+|Gipsz Jakab|1000 Budapest|Kiss Tamás |1200 Budapest|+7000|
+|Nagy Zoltán|1000 Budapest|Kiss Tamás |1200 Budapest|-3000|
+|Kiss Tamás|1000 Budapest|Gipsz Jakab |1200 Budapest|+4000|
+
+
+#### SQL Szolgáltatásai
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Szoftverfejlesztés
