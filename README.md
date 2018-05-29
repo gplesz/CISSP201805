@@ -441,7 +441,7 @@ Partner tábla
 - **Foreign Key (FK)** (távoli kulcs): ami egy másik táblában egy PK mezőre "mutat". 
 
 |Partner 1| Partner 2| Összeg |
-|-|-|
+|-|-|-|
 |1|2|+5000|
 |1|3|+7000|
 |2|3|-3000|
