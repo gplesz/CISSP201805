@@ -471,7 +471,7 @@ go
 ez után, vagy pedig ha az [SQLFiddle](http://sqlfiddle.com) oldalon próbáljuk ki a kódot, akkor nem kell létrehozás, csak ami most jön:
 
 ```sql
---két tábla létrehozása
+--két tábla létrehozása (DDL: Data Definition Language)
 create table Partnerek (
 	Kulcs int not null primary key clustered,
 	Nev nvarchar(50),
@@ -493,7 +493,7 @@ go
 Figyelem, ezt a két scriptet egyszerre kell az SQLFiddle-ben használni.
 
 ```sql
---ezt követően fel kell tölteni adatokkal
+--ezt követően fel kell tölteni adatokkal (DML: Data manipulation Language)
 insert Partnerek values (1, 'Gipsz Jakab', '1000 Budapest')
 go
 
@@ -503,16 +503,16 @@ go
 insert Partnerek values (3, 'Kiss Tamás', '1200 Budapest')
 go
 
-insert Osszegek values (1,2,5000)
+insert Osszegek values (1,1,2,5000)
 go
 
-insert Osszegek values (1,3,7000)
+insert Osszegek values (2,1,3,7000)
 go
 
-insert Osszegek values (2,3,-3000)
+insert Osszegek values (3,2,3,-3000)
 go
 
-insert Osszegek values (3,1,4000)
+insert Osszegek values (4,3,1,4000)
 go
 ```
 
