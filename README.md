@@ -570,7 +570,7 @@ where
   - check constraint
     például: Összeg>0 nem enged 0-t vagy negatív számot felvinni.
 
-##### SQL nézetek
+###### SQL nézetek
 
 Példa (az eredeti schema után még ezt is bemásolni az SQLFiddle-be):
 
@@ -594,14 +594,14 @@ Egy olyan virtuális táblát generál (egy olyan felületet ad a felhasználó 
 
 Lehetővé teszi, hogy az így létrehozott virtuális tábla megsértse a normalizálási szabályokat.
 
-##### Database Schema
+###### Database Schema
 Definiálja az adatbázis felépítését
 - Táblák (Tables)
 - Táblák közti kapcsolatok (Relationships), FK
 - Business rules
 - Domains
 
-##### Adatbázis integritása: a tranzakciók (Database integrity operations: transactions)
+###### Adatbázis integritása: a tranzakciók (Database integrity operations: transactions)
 Minden adatbázis műveletre jellemzőek ezek a szabályok
 - **A**tomic: nem részekre bontható, az egyes műveletek vagy együtt végrehajtódnak, vagy egyik sem hajtódik végre.
 - **C**onsistency: az adatbázis műveletei megtartják a konzisztenciát, vagyis az integritási szabályoknak megfelelő állapotból a művelet után csak az integritási szabályíoknak szintén megfelelő állapotba kerülhet.
@@ -624,5 +624,13 @@ select * from Osszegek
 commit transaction
 ```
 
+###### Konkurencia (Concurrency)
+Az adatok szerkesztésének a felügyelete (edit control) egy megelőző mechanizmus, arra törekszik, hogy az adatbázisban tárolt információk helyesek legyenek, integritás és rendelkezésreállás szempontjából. Maga a védelem egy zárolási (lock mechanism) funkciót használ, hogy a módosítás konzisztens legyen: egy felhasználó módosítását engedélyezi, a többi hozzáférést megtagadja.
+
+A módosítást követően a feloldás visszaállítja a többi felhasználó hozzáférését.
+
+Bizonyos esetekben, ha a rendszergazda integrálja a konkurrens hozzáférés szabályozást naplózással, a módosítások nyomon köveésére is alkalmas.
+
+Amikor pedig a rögzített adatokat vizsgálják, a konkurrencia nyomozói eszközzé (detective control) válik.
 
 ## Szoftverfejlesztés
