@@ -533,7 +533,96 @@ from
   
 ```
 
+```sql
+--Kis Tamás elköltözik Kecskemétre (DML)
+update 
+  Partnerek
+set
+  Cim='6000 Kecskemét'
+where
+  Kulcs=3
+```
 
+##### Az SQL adatbázis védelmi képességei
+
+**Ezek azt szolgálják, hogy ne kerülhessen az adatbázisba érvénytelen információ**
+
+- Entity integrity: garantálja, hogy minden sornak van PK-ja
+- Referential integrity: az adott táblában lévő FK mező információja létező PK-ra mutat. (Létrehozáskor, módosításkor és törléskor) Például:
+
+  ```sql
+
+    delete Partnerek where Kulcs = 1
+
+    ---eredménye: 
+    --The DELETE statement conflicted with the REFERENCE constraint "fk_osszegek_partnerek1". The conflict occurred in database "db_18_d2dc4", table "dbo.Osszegek", column 'Partner1'.
+
+  ```
+
+- Semantic integrity: biztosítja, hogy a strukturális és szemantikai szabályok ki legyenek kényszerítve
+  - not null
+  ```sql
+  insert Partnerek values (null, 'Tüdő Pál', '1000 Budapest')
+
+  --eredménye:
+  --Cannot insert the value NULL into column 'Kulcs', table 'CISSP2018.dbo.Partnerek'; column does not allow nulls. INSERT fails.
+  ```
+  - check constraint
+    például: Összeg>0 nem enged 0-t vagy negatív számot felvinni.
+
+##### SQL nézetek
+
+Példa (az eredeti schema után még ezt is bemásolni az SQLFiddle-be):
+
+```sql
+
+create view EredetiAdathalmaz
+as
+select
+  Partnerek1.Nev Nev1,
+  Partnerek1.Cim Cim1,
+  Partnerek2.Nev Nev2,
+  Partnerek2.Cim Cim2,
+  Osszegek.Osszeg
+from
+  Osszegek
+  inner join Partnerek Partnerek1 on Partnerek1.Kulcs = Partner1
+  inner join Partnerek Partnerek2 on Partnerek2.Kulcs = Partner2
+
+```
+Egy olyan virtuális táblát generál (egy olyan felületet ad a felhasználó felé) ami elrejti a mögötte lévő mechanizmust és a nyers adatokat, és saját jogosultságokat lehet hozzá megadni.
+
+Lehetővé teszi, hogy az így létrehozott virtuális tábla megsértse a normalizálási szabályokat.
+
+##### Database Schema
+Definiálja az adatbázis felépítését
+- Táblák (Tables)
+- Táblák közti kapcsolatok (Relationships), FK
+- Business rules
+- Domains
+
+##### Adatbázis integritása: a tranzakciók (Database integrity operations: transactions)
+Minden adatbázis műveletre jellemzőek ezek a szabályok
+- **A**tomic: nem részekre bontható, az egyes műveletek vagy együtt végrehajtódnak, vagy egyik sem hajtódik végre.
+- **C**onsistency: az adatbázis műveletei megtartják a konzisztenciát, vagyis az integritási szabályoknak megfelelő állapotból a művelet után csak az integritási szabályíoknak szintén megfelelő állapotba kerülhet.
+- **I**solation: amit tranzakcióban végzünk, azt a többiek addig nem láthatják, amíg nem végeztünk.
+- **D**urable: ha a tranzakció végetért, akkor az eredménye tartósan megmarad.
+
+```sql
+begin transaction 
+
+insert Partnerek values (4, 'Tüdő Pál', '1200 Budapest')
+
+select * from Partnerek
+
+insert Osszegek values (5,1,4,1000)
+
+select * from Osszegek
+
+--rollback
+
+commit transaction
+```
 
 
 ## Szoftverfejlesztés
