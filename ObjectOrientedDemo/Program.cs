@@ -36,6 +36,11 @@ namespace ObjectOrientedDemo
         {
             egyenleg = egyenleg + 50;
         }
+
+        public new void Jovairas(int osszeg)
+        {
+            egyenleg = egyenleg + 2*osszeg;
+        }
     }
 
     class Bankszamla

@@ -880,7 +880,8 @@ internal class Bankszamla
 #### Objektum orientált alapelvek
 - Encapsulation (Egységbezárás): Az osztályon kívül csak az látszik, amit megengedünk.
 - Abstraction (Absztrakció): Csak azzal foglalkozunk, ami egy adott szinten fontos
-- Inheritance (Leszármaztatás): Az ős tulajdonságait átvehetjük és kiegészíthetjük
+- Inheritance (Leszármaztatás): Az ős tulajdonságait **átvehetjük és kiegészíthetjük**
+- Polimorpism (Változatosság): többféle változat kialakítható, az ős tulajdonságait **átvehetjük és meg is változtathatjuk**
 
 
 
