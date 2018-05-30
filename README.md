@@ -726,6 +726,8 @@ Bonyolultabb formája, ha a támadó a rendszer beállításait átírva (péld�
 
 ### Vizsgapélda
 
+#### Kérdés
+
 Referring to the database transaction shown here, what would happen if no accounts exists in the Account table with account number 1001?
 
 ```sql
@@ -746,7 +748,32 @@ END TRANSACTION
 - [ ] The database would roll back the transaction, ignoring the result of both commands.
 - [ ] The database would generate an error message
 
+#### Kis segítség
 
+A schema létrehozásához
+```sql
+create table accounts (
+	account_number int not null primary key,
+	balance int
+);
 
+insert into accounts (account_number, balance) values (1001, 0);
+
+insert into accounts (account_number, balance) values (2002, 0);
+```
+
+A próbához:
+```sql
+select * from accounts
+
+begin transaction
+
+update accounts set balance = balance + 250 where account_number=1001;
+update accounts set balance = balance - 250 where account_number=2002;
+
+commit transaction
+
+select * from accounts
+```
 
 ## Szoftverfejlesztés
