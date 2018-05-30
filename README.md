@@ -775,5 +775,51 @@ commit transaction
 
 select * from accounts
 ```
-
 ## Szoftverfejlesztés
+
+### Mi a baj a szoftverfejlesztéssel?
+Rendkívül összetett és rengeteg kihívással teli feladatot tartalmazó problémakör. Biztonsági szempontból garantálni kell, hogy a folyamat és a végeredménye szabályozott, és az eredmény érvényesíti a biztonsági szempontokat. Utólag biztonságot beépíteni nem lehet, ezért a biztonsági szempontokat végig érvényesíteni kell.
+
+A szoftverek:
+- hozzáférnek érzékeny adatokhoz
+- hozzáférhetőek több felhasználó számára
+- sok esetben saját készül
+- sok esetben "idegenek" készítik
+- túl erős eszközök: közvetlenül
+  - irányíthatják a hardver eszközöket
+  - hozzáférnek az állományokhoz
+  - hozzáférnek az I/O eszközökhoz
+  - hozzáférnek a rendszer segédprogramokhoz
+  - hozzáférnek a feladatok futtatásához/leállításához
+  - beállíthatnak dátumot és időt
+  - hozzáférnek naplókhoz
+  - hozzáférnek erőforrásokhoz
+- ha nem mi irányítjuk, támadhatnak más eszközöket (DDoS)
+
+### Programozási nyelvek
+A szoftver készítésénél az a transzformáció, amíg a feladatból futtatható gépi kód lesz (egyszerű összeadással, logikai művelettel vagy adatok mozgatásával) amit a CPU támogat, egy rendkívül hosszú és meglehetősen bonyolult dolog. Az egyes programozási nyelvek célja ennek a transzformációnak a megkönnyítése.
+
+- 1GL: Gépi kód (processzor számára közvetlenül végrehajtható számsorozat: [itt lehet](https://courses.cs.vt.edu/~cs1104/VirtualMachines/MLEmulator.html) ilyet nézni
+- 2GL: Assembly az egyes utasításokat rövidítésekkel jelöli, használ változókat, és egyből gépi kódra fordítható. ([itt lehet assembly + gépi kódot nézni](https://schweigi.github.io/assembler-simulator/), [egy másik assembly példa](http://carlosrafaelgn.com.br/asm86/index.html?language=en))
+- 3GL: Fordított nyelvek (Fortran, Algol)
+- 4GL: Megpróbálja a természetes nyelvet utánozni + SQL-t használ adathozzáférésre
+- 5GL: Grafikus felületen keresztüli kód létrehozás ([egy példa](https://developers.google.com/blockly/)), de ilyenek például az űrlapszerkesztő által generált kód+adatbázis típusú fejlesztőeszközök.
+
+- Fordított nyelvek és/vagy környezetek (Compiled Language)
+  A forráskódot a fordító egy vagy több lépésben az adott fizikai gép gépi kódjára fordítja. Ez egy gépi kódu állomány lesz, amit aztán többször futtathatunk.
+- Értelmezett nyelvek és/vagy környezetek (Interpreted Language)
+  Vagy script nyelvi programok (javascript, BASIC), amiket menet közben fordít a környezet és a fordító gépi kódra. Minden futáskor lépésenként újra fordul.
+- Felügyelt nyelvek (Managed Language)
+  - Fordított nyelvnek számítanak, 
+  - de nem gépi kódra, hanem egy köztes nyelvre **fordítanak** (Java: byte code, C# MSIL: Microsoft Intermediate Language)
+  - A köztes nyelvet pedig a futtatókörnyezet (Java: java virtual machine, C#: .NET keretrendszer) **értelmezi** lépésről lépésre
+  - a futtatókörnyezet ezek mellett
+    - keresztplatformos, vagyis minden architektúrán más és más, csak annyira képes, hogy futtassa a köztes nyelvű programot
+  - képes az OS API (Application Programming interface) elrejtve egységes felületet adni a programnak
+  - felügyeli a futó programot, jogosultság, veszélyes műveletek szemponjából
+  - memóriamanagementet ad a program számára
+
+### Objektumorientált programozás
+
+
+
