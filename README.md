@@ -629,8 +629,124 @@ Az adatok szerkesztésének a felügyelete (edit control) egy megelőző mechani
 
 A módosítást követően a feloldás visszaállítja a többi felhasználó hozzáférését.
 
-Bizonyos esetekben, ha a rendszergazda integrálja a konkurrens hozzáférés szabályozást naplózással, a módosítások nyomon köveésére is alkalmas.
+Bizonyos esetekben, ha a rendszergazda integrálja a konkurrens hozzáférés szabályozást naplózással, a módosítások nyomon követésére is alkalmas.
 
 Amikor pedig a rögzített adatokat vizsgálják, a konkurrencia nyomozói eszközzé (detective control) válik.
+
+##### Részletes hozzáférési szabályozás (granular control)
+Az adatbáziskezelők (DBMS) közös biztonsági eleme, hogy az egyes alkotóelemekhez való hozzáférés részletekbe menően szabályozható.
+
+##### Semantic integrity
+Ez biztosítja, hogy a felhasználók semmilyen adatbázisba beállított szabályt ne tudjanak áthágni.
+
+##### Date and Time stamps
+Ha minden változási tranzakcióra időbélyeget teszünk, akkor biztosíthatjuk egy elosztott rendszeren belül is az adatok integritását.
+
+##### Content-dependent access control
+Ez a fajta ellenőrzés az adott objektum statikus beállításain kívül figyelembe veszi a hozzáférés céljaként szereplő objektum tartalmát. Mivel minden hozzáférésnél le kell fusson az ellenőrzés, így ez megnöveli a kiszolgáláshoz szükséges teljesítményt.
+
+##### Cell supression
+Az egyes adatbázis mezők vagy pedig egyes adatoknál a környezethez képest nagyobb biztonsági szint igénylése.
+
+##### Context-dependent acces control
+Az egyes objektumokhoz való hozzáférés mellett vizsgál egy nagyobb képet is a hozzáférések elbírálásánál. Az egyes tranzakciók/műveletek még érvényesnek tűnhetnek, de _eggyütt_ a műveletek már jelezhetnek valamilyen hozzáférési támadást.
+
+##### Adatbázis particionálás
+Az adatokat nem egy, hanem tulajdonságaik alaján több adatbázisba szedjük szét, így a sokkal finomabb jogosultságokat lehet aztán később beállítani.
+
+##### Polyinstantiation
+A példánkban egy tengeralattjáró lesz főszereplő. A tengeralattjárók adatait egy titkos (secret) besorolású intézményben kezelik. Itt a munkatársak hozzáférnek a titkos adatokhoz. Ha ezt tengeralattjárót elvezénylik egy szigorúan titkos (top secret) küldetésre, akkor az, aki eddig hozzáfért az adataihoz, egyből tudhatja, hogy valami történt. Ez az információ is önmagában védendő.
+
+Ha viszont felveszünk egy top secret rekordot az adatbázisba a tengeralattjáróhoz a valódi adataival, akkor az eddigi munkatárs nem vesz észre semmit, viszont a megfelelő beosztású munkatárs hozzáfér az adatokhoz.
+
+##### Noise and Perturbation
+A nem élő (secret) rekordba hamis és félrevezető adatokat rögzítve megtéveszthetjük a jogosulatlan kíváncsiskodóakat.
+
+Ez nagy óvatosságot igényel, hogy a zaj ne tegye tönkre a rendes folyamatokat.
+
+##### Általános támadási módok
+###### Támadási módok
+- Aggregation (Összegzés)
+  Egy katonai adminisztrátor a főszereplőnk. Pl.: ő rögzíti be a személyzeti nyilvántartást. Tehát X őrmestert áthelyezik A-ból B-be. Ezzel hozzáférést kap a személyzeti táblához, hogy ilyet tudjon rögzíteni.
+  Ha hozzáférne a tábla összegzéséhez is, akkor az A és a B támaszpontok személyzeti létszámokat is le tudná kérdezni erre a két támaszpontra, ami nyilvánvalóan minősített adat kell, hogy legyen.
+
+- Inference (Következtetéses támadás)
+  A pénzügyi adminisztrátor a főszereplőnk. A cégösszesen bérköltségét le tudja kérdezni a riportokhoz. Ezeket a riportokat visszamenőleg is el tudja végezni. 
+  Ezen kívül tudja azt, hogy egy munkatárs mikor lépett ki, vagy be. 
+  Ha egy kérdéses napon csak egy ember lépett be, lekérdezi a cégösszesent a belépés előtti és a belépés napján, és így hozzáfér a munkatárs fizetési információjához, pedig ehhez nincs jogosultsága.
+
+###### Védekezés
+- A jogosultságok folyamatos követése
+- Az adatok szándékos elmosása (data blurring)
+- Az adatbázis több részre vágása, külön jogosultságokkal (data partitioning)
+
+##### ODBC: Open Database Connection
+
+```
+                                               +----------+     +-------------+
+                                               |          |     |             |
+                                               | MS SQL   | +-> | MS SQL      |
+                                +------------> | Driver   |     |             |
+                                +              |          |     |             |
+                                               +----------+     +-------------+
++---------------+        +-----------+
+|               |        |           |         +----------+     +-------------+
+|  Alkalmazás   |        | ODBC      |         |          |     |             |
+|               |        | Connection|         | Oracle   | +-> | Oracle      |
+|               | +----> |           | +-----> | Driver   |     |             |
+|               |        |           |         |          |     |             |
+|               |        |           |         +----------+     +-------------+
+|               |        |           |
+|               |        |           |         +----------+     +-------------+
+|               |        +-----+-----+         |          |     |             |
+|               |              |               | IBM DB2  | +-> | IBM DB2     |
++---------------+              +------------>  | Drive    |     |             |
+                                               |          |     |             |
+                                               +----------+     +-------------+
+```
+Az alkalmazás nem az adatbázis felülettel beszélget, hanem az ODBC meghajtóval, ami közvetíti a kérést és a választ az alkalmazás és az adott adatbázis között.
+
+##### Storing Data and Information
+Az adatbázisokhoz az elsődleges út az adatbázis kezelő alkalmazáson keresztül vezet. Az adatok azonban valamilyen tárolóeszközre kerülnek, amik óvatlan beállítás esetén hátsó ajtót biztosítanak az adatbázishoz.
+
+###### Illegitimate access to storage resources
+Ha nincs jól beállítva a hozzáférési környezet, például, ha az adatbázis állomány (file) eléréséhez szükséges jogosultságok nincsenek rendesen beállítva, akkor a betolaködő egyszerű böngészéssel eléri.
+
+- Be kell állítani a jogosultságokat az OS-ben
+- Az OS védelem megkerülése ellen a titkosított filerendszer (encrypted filesystem) a megoldás
+- Különös figyelemmel kell lenni megosztott elsődleges és másodlagos memória beállításaira
+
+###### Covert channel attack
+Az információ átvitelét lehetővé tevő struktúrát általában csatornának (channel) hívjuk.
+A rejtett csatorna (covert channel) olyan kommunikációs csatorna, ami a legális csatornát használja nem szabványos módon, így rejtve marad a védelmi mechanizmusok előtt, és nem érvényesülnek rá a biztonsági szabályok.
+
+Lehet olyan formája, hogy az adatok egy óvatlanul megosztott memóriaterületre tévednek.
+
+Bonyolultabb formája, ha a támadó a rendszer beállításait átírva (például a szabad hely mennyiségét vagy csak egy fájl méretét átírva) az adatok nem kívánt módon megjelennek olyan helyen, ahol nem lenne szabad lenniük.
+
+### Vizsgapélda
+
+Referring to the database transaction shown here, what would happen if no accounts exists in the Account table with account number 1001?
+
+```sql
+BEGIN TRANSATION
+UPDATE accounts
+SET balance = balance + 250
+WHERE account_number = 1001;
+
+UPDATE accounts
+SET balance = balance – 250
+WHERE account_number = 2002;
+
+END TRANSACTION
+```
+
+- [ ] The database would create a new account with this account number and give it a $250 balance.
+- [ ] The database would ignore that command and still reduce the balance of the second account by $250.
+- [ ] The database would roll back the transaction, ignoring the result of both commands.
+- [ ] The database would generate an error message
+
+
+
 
 ## Szoftverfejlesztés
