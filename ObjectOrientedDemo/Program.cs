@@ -6,7 +6,7 @@ namespace ObjectOrientedDemo
     {
         static void Main(string[] args)
         {
-            var cegesBankszamla = new Bankszamla("Abroncs és Fiai Kft.");
+            var cegesBankszamla = new KamatozoBankszamla("Abroncs és Fiai Kft.");
 
             System.Console.WriteLine($"Egyenleg: {cegesBankszamla.Egyenleg}");
             cegesBankszamla.Jovairas(5000);
@@ -22,13 +22,26 @@ namespace ObjectOrientedDemo
 
             System.Console.WriteLine($"Egyenleg: {cegesBankszamla.Egyenleg}");
 
+            cegesBankszamla.Kamatszamitas();
+            System.Console.WriteLine($"Egyenleg: {cegesBankszamla.Egyenleg}");
+
         }
     }
 
-    internal class Bankszamla
+    class KamatozoBankszamla : Bankszamla
+    {
+        public KamatozoBankszamla(string name) : base(name) {}
+
+        public void Kamatszamitas()
+        {
+            egyenleg = egyenleg + 50;
+        }
+    }
+
+    class Bankszamla
     {
         private string name;
-        private int egyenleg;
+        protected int egyenleg;
         public object Egyenleg 
         { 
             get 
@@ -42,12 +55,12 @@ namespace ObjectOrientedDemo
             this.name = name;
         }
 
-        internal void Jovairas(int osszeg)
+        public void Jovairas(int osszeg)
         {
             egyenleg = egyenleg + osszeg;
         }
 
-        internal void Terheles(int osszeg)
+        public void Terheles(int osszeg)
         {
             egyenleg = egyenleg - osszeg;
         }
