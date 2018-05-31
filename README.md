@@ -1106,6 +1106,29 @@ Ez egy iteratív módszertan, felkészül arra, hogy elsőre nem sikerül töké
 
 ![Összefoglaló kép](images/SpiralModel.png)
 
+#### Agile (Agilis) szoftverfejlesztés
+
+- **Egyének és együttműködések** a *folyamatok és eszközök* helyett
+- **Működő szoftver** az *átfogó dokumentáció* helyett
+- **Együttműködés az ügyféllel** a *szerződés érvényesítése* helyett
+- **Reagálás a változásokra** a *terv követése* helyett
+
+A jobb oldalon szereplő dolgok is fontosak, de balaldalon szereplők még ennél is értékesebbek.
+
+##### Alapelvek
+
+- Legfontosabbnak azt tartjuk, hogy az ügyfél elégedettségét a működő szoftver mielőbbi és folyamatos szállításával vívjuk ki.
+- Elfogadjuk, hogy a követelmények változhatnak akár a fejlesztés vége felé is. Az agilis eljárások a változásból versenyelőnyt kovácsolnak az ügyfél számára.
+- Szállíts működő szoftvert gyakran, azaz néhány hetenként vagy havonként, lehetőség szerint a gyakoribb szállítást választva.
+- Az üzleti szakértők és a szoftverfejlesztők dolgozzanak együtt minden nap, a projekt teljes időtartamában.
+- Építsd a projektet sikerorientált egyénekre. Biztosítsd számukra a szükséges környezetet és támogatást, és bízz meg bennük, hogy elvégzik a munkát.
+- A leghatásosabb és leghatékonyabb módszer az információ átadásának a fejlesztési csapaton belül, a személyes beszélgetés.
+- A működő szoftver az elsődleges mércéje az előrehaladásnak.
+- Az agilis eljárások a fenntartható fejlesztést pártolják. Fontos, hogy a szponzorok, a fejlesztők és a felhasználók folytonosan képesek legyenek tartani egy állandó ütemet.
+- A műszaki kiválóság és a jó terv folyamatos szem előtt tartása fokozza az agilitást.
+- Elengedhetetlen az egyszerűség, azaz az elvégezetlen munkamennyiség maximalizálásának művészete.
+- A legjobb architektúrák, követelmények és rendszertervek az önszerveződő csapatoktól származnak.
+- A csapat rendszeresen mérlegeli, hogy miképpen lehet emelni a hatékonyságot, és ehhez hangolja és igazítja az működését.
 
 
 
