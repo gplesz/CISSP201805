@@ -966,3 +966,61 @@ Példa újrafelhasználható kódra
 |           |
 +-----------+
 ```
+
+### Assurance (Biztosíték)
+Annak érdekében, hogy egy új alkalmazásban a a biztosítási mechanizmusok a rendszer teljes életciklusán keresztül a biztonsági szempontoknak megfelelően működjenek, garanciákat érdemes beépíteni.
+
+például: [Trusted Computer System Evaluation Criteria (TCSEC)](https://hu.wikipedia.org/wiki/Trusted_Computer_System_Evaluation_Criteria)
+
+#### Rendszerhiba elkerülése
+Teljesen mindegy mennyire jó a fejlesztő csapat, a rendszer előbb-utóbb hibázni fog. Erre a hibára előre kell felkészülni, és így biztosítani, hogy a rendszer megfelelően reagáljon.
+
+##### Input Validation (Beviteli adatok ellenőrzése)
+A rendszerbe kerülő adatokat a rendszernek ellenőriznie kell.
+
+MVC példakód készítéséhez a keret program legyártása
+```powershell
+dotnet new mvc --auth Individual --use-local-db
+```
+
+- lehet ellenőrizni típus szerint (szám, szöveg, dátum, stb.)
+- lehet ellenőrizni értéktartomány szerint (legfeljegg 50 karakter, 1 és 12 közötti szám, stb.)
+- lehet ellenőrizni tartalmazott karakterekre, veszélyes karaktereket szűrni (pl.: idézőjel, kérdőjel, pontosvessző, kisebb/nagyobb jel stb.) (escaping input)
+- lehet kérni, hogy a beírt szöveget veszélymentesítsük (encoding input)
+
+pl: ebből:
+```
+http://netacademia.hu
+```
+ezt készítjük:
+
+```
+http%3A%2F%2Fnetacademia.hu
+```
+
+[ennek a segítségével: urlencoder.org](https://www.urlencoder.org/)
+
+- a bevitel ellenőrzését mindig szerver oldalon (is) el kell végezni
+
+Fontos: a [secure coding](https://en.wikipedia.org/wiki/Secure_coding) elveket a fejlesztőktől [meg kell követelni](https://www.owasp.org/index.php/OWASP_Secure_Coding_Practices_-_Quick_Reference_Guide)!
+
+##### fail-safe (fail-secure) és fail-open állapotok
+- fail-safe (fail-secure)
+  incidens esetén a rendszer fail-safe állapotba akkor kerül, ha a hibát követően működését felfüggeszti, általa adatokhoz, erőforrásokhoz csak akkor lehet hozzáférni, ha egy megfelelő szakember a helyzetet áttekintette. Erre jó példa a Blue Screen of Death (BSoD) a Windows esetén. Erre akkor kerül sor, ha például valamelyik hardver meghajtó olyan helyre ír a memóriában, ami nem az övé (ring protection).
+  Annak a garantálásához hogy a rendszerünk nem megy tovább megfelelő személy nélkül, az automatikus bejelentkezést nem szabad engedélyezni.
+
+- fail-open
+  feloldhatatlan biztonsági probléma esetén is tovább megy a rendszer. Ekkor a felhasználók biztonsági követelményeket. 
+  
+A legtöbb esetben a fail-secure megoldás a megfelelő válasz.
+
+Korlátozott esetben, ha több rétegű biztonsági rendszer egyik belső eleméről van szó, amit még védenek további rétegek, nagyon nagy odafigyeléssel kialakítható biztonságos rendszer fail-open elemekből, de ez nem olyan megoldás, amit egy biztonsági szakember szeretne a magáénak tudni.
+
+Még ha be is van ágyazva a biztonság, a könnyebb telepítés és felhasználhatóság érdekében ez gyakran le van tiltva. Így ez az informatikai rendszergazda feladata, hogy bekapcsolja őket.
+
+A biztonság fenntartása nőveli a költségeket és csökkenti a felhasználóbarátságot, így ezért aztán ezeket a szempontokat együtt kell érvényesíteni.
+
+
+
+
+
