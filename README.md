@@ -1130,5 +1130,24 @@ A jobb oldalon szereplő dolgok is fontosak, de balaldalon szereplők még enné
 - A legjobb architektúrák, követelmények és rendszertervek az önszerveződő csapatoktól származnak.
 - A csapat rendszeresen mérlegeli, hogy miképpen lehet emelni a hatékonyságot, és ehhez hangolja és igazítja az működését.
 
+#### SCMM: Software Capability Maturity Model
 
+A szoftver előállítási képesség érettségi (fejlettségi) modellje.
+
+Alapelv: Minden szoftver előállítást végző szervezet ugyanazokon a fázisokon megy keresztül. Az elkészült szoftver termék minősége az előállítási folyamat minőségén múlik.
+
+##### Initial (Level 1)
+Az eredmény előrejelezhetetlen, a siker egyéni erőfeszítés eredménye. Gyakorlatilag fekete doboz.
+
+##### Repeatable (Level 2)
+**Hasonló** projektek esetén az eredmény ismételhető. Van kód újrafelhasználás, az alapvető fejlesztési folyamat felismerhető. Fekete dobozok sorozata.
+
+##### Defined (Level 3)
+A folyamat áttekinthető: dokumentált és szabványosított. Szoftver előállításhoz minden projekt a szervezet szabványos projektjeit használja. Nincs fekete doboz.
+
+##### Managed (Level 4)
+Előrejelezhető: a folyamat és a termék mennyiségi mérőszámokkal ellenőrzött. A folyamat méréséhez és megítéléséhez részletes adatok állnak rendelkezésre.
+
+##### Optimizing (Level 5)
+Folyamatosan fejlődő. A folyamat részei cserélődnek, a rossz kikerül.
 
