@@ -1065,9 +1065,46 @@ A fejlesztés során elkészülő részeredményeket több szemmel is érdemes �
   - általános feltételek mellett
   - szokatlan/ritka feltételek mellett
 
-#### Maintenance and Change Management
+##### Maintenance and Change Management
 - a működőképesség biztosítása változó környezetben
 - fontos, hogy minden változás formális változás felügyeleti programban végezzük.
+
+#### Waterfall (vízesés) módszertan
+1970: Winston Royce ([wikipédia](https://en.wikipedia.org/wiki/Waterfall_model))
+
+Fázisokra osztja a fejlesztés menetét
+- amíg egy fázis el nem készül, addig nem lépünk tovább.
+- ha egy fázisról elléptünk, akkor nem lehet visszalépni.
+
+1. Rendszer követelmények
+2. Szoftver követelmények
+3. Előzetes tervek
+4. Részletes tervek 
+5. Fejlesztés és hibajavítás
+6. Tesztelés
+7. Üzemeltetés
+
+Továbblépés előtt ellenőrzés:
+- Verification: követelmények szerint
+- Validation: a való világ szerint
+
+A továbbfejlesztés 1 visszalépést engedélyezett a fázisokban.
+
+De ez nem lett túl sikeres, mert addigra elterjedt
+
+#### Spiral model
+1988: Barry Boehm
+
+A modell négy területre oszja a fejlesztést,
+
+- Célok, keretek, és alternatívák meghatározása
+- Alternatívák elemzése, kockázatok azonosítása és kezelése
+- Fejlesztés és ellenőrzés
+- Következő fejlesztési fázis tervezése
+
+Ez egy iteratív módszertan, felkészül arra, hogy elsőre nem sikerül tökéletesen a végeredményt előállítani.
+
+![Összefoglaló kép](images/SpiralModel.png)
 
 
 
