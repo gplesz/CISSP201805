@@ -1020,6 +1020,54 @@ Még ha be is van ágyazva a biztonság, a könnyebb telepítés és felhasznál
 
 A biztonság fenntartása nőveli a költségeket és csökkenti a felhasználóbarátságot, így ezért aztán ezeket a szempontokat együtt kell érvényesíteni.
 
+### Szoftberfejlesztési módszertanok és életciklus modellek
+
+- CMM Capability Maturity Model: Minden előállítást végző szervezet ugyanazokon a fázisokon megy keresztül. Az elkészült termék minősége az előállítási folyamat minőségén múlik.
+
+- A módszertan használata növeli az elkészült rendszer minőségét. Viszont a nem megfelelően használt megfelelően használt módszertan nem garantál semmit.
+
+#### System Development Life Cycle (SDLC)
+
+A biztonsági szempontokat a rendszer fejlesztésének teljes életcikusa során érvényesíteni kell.
+
+##### Conceptual Definition
+Egyszerű definíció, amit minden érdekelt fél elfogad.
+- tisztázza rendszer célját és az alapvető követelményeket.
+- nem kell, hogynéhány bekezdésnél hosszabb legyen.
+
+##### Functional requirement determination
+- Lista a fejlesztendő rendszer képességeiről. 
+- Ezt is fontos, hogy minden érdekelt fél elfogadja. 
+- ez adja az alapot a jelesztéshez és
+- a fejlesztés végén jó eszköz az eredménynek az ellenőrzéséhez
+
+##### Control Specification Development
+- tervezni kell, hogy a jogosult felhasználók elérjék a rendszert, és ne léphessék túl a jogosultságukat.
+- a bizalmas adatokat megfelelő titkosítással kell ellátni.
+- naplót kell vezetnie a rendszernek a számonkérhetőség és a nyomozhatóság érdekében.
+- a rendszer rendelkezésreállását a rendszer fontosságához mérten biztosítani kell.
+
+Ez a munka nem egyszeri alkalom, hanem a terv változása esetén újra el kell végezni.
+
+##### Design Review
+- a működési struktúra elemeinek a meghatározása
+- az elemek közötti kommunikáció meghatározása
+- kezdeti ütemtervek kidolgozása
+
+Ha a terv kész, minden érintett félnek el kell fogadni.
+
+##### Code review walkthrough
+A fejlesztés során elkészülő részeredményeket több szemmel is érdemes átvizsgálni.
+
+##### System Tests Review
+- a forgatókönyveket előre kell rögzíteni
+- a fejlesztők és felhasználók is ellenőrzik a rendszer működőképességét
+  - általános feltételek mellett
+  - szokatlan/ritka feltételek mellett
+
+#### Maintenance and Change Management
+- a működőképesség biztosítása változó környezetben
+- fontos, hogy minden változás formális változás felügyeleti programban végezzük.
 
 
 
