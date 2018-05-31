@@ -25,6 +25,9 @@ namespace ObjectOrientedDemo
             cegesBankszamla.Kamatszamitas();
             System.Console.WriteLine($"Egyenleg: {cegesBankszamla.Egyenleg}");
 
+            System.Console.WriteLine($"Bankszámla neve: {cegesBankszamla.Nev}");
+            
+
         }
     }
 
@@ -46,6 +49,11 @@ namespace ObjectOrientedDemo
     class Bankszamla
     {
         private string name;
+        public object Nev 
+        { 
+            get { return name; }
+        }
+
         protected int egyenleg;
         public object Egyenleg 
         { 

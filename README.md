@@ -883,6 +883,86 @@ internal class Bankszamla
 - Inheritance (Leszármaztatás): Az ős tulajdonságait **átvehetjük és kiegészíthetjük**
 - Polimorpism (Változatosság): többféle változat kialakítható, az ős tulajdonságait **átvehetjük és meg is változtathatjuk**
 
+- Osztály (Class) és Objektum (object) fogalma
+  - Az **osztály** egy tervrajz, ami a tervek mentén létrehozandó objektum tulajdonságait írja le.
+  - Az **objektum** pedig egy példánya az osztálynak.
+- Ez a megoldás biztonsági szempontból egy **fekete doboz**.
+- Az **objektum** egy másik definíciója, ezek a jellemzők igazak rá:
+  - Identity: Azonosítható (bármely két objektumról el tudom dönteni, hogy azonosak-e vagy sem)
+  - Behaviour: Van viselkedése (pl.: Terheles() és Jovairas())
+  - State: van állapota (pl.: Egyenleg és Nev), ez időben változhat
+- Az objektumorientált programozás nagyon fontos előnye, hogy **felületeket definiál**. A felület elválasztja egymástól a használót és a megvalósítást.
+  - TV távirányító
+  - Hangerőszabályzó
+
+#### Az objektumorientált programozás előnyei
+- Modularity (Moduláris)
+- Reusable (Újrafelhasználhatóság) ennek két fontos feltétele van
+  - High cohesion (erős kohézió) azt jelenti, hogy az osztályhoz tartozó feladatok (felelősségi körök) mennyire   hasonlítanak egymásra.
+  - Low coupling (gyenge csatolás): csatolás: két egymással kapcsolatban álló osztály esetén az egyik megváltozása mennyire valószínűsíti a másik változtatási szükségességét. Gyenge a csatolás, ha ez az szükséglet **kizárható**.
 
 
+Példa a nem újrafelhasználható kódra
 
+```
+                    +-----------+
+                    |           |
+                    |  Űrlap 1  |
+                    |           |
+                    |           |
+      +---------------->  +---+ |
+      |             |     |---| | +-------->---------->------------------->
+      |             +-----------+                                         ^
+      |                                                             +-----+-------+
+      |                                                             |             |
+      |             +-----------+                                   |  Adatbázis  |
+      +             |           |                                   |             |
+                    |  Űrlap 2  |                                   |             |
+Adatbázist          |           |                                   |             |
+módosító            |           |                                   |             |
+rész a kódban +--------> +----+ |                                   +-------------+
+                    |    |----| | +---------->----------->---------------->
+      +             +-----------+                                         |
+      |                                                                   |
+      |                                                                   |
+      |             +-----------+                                         |
+      |             |           |                                         ^
+      |             |  Űrlap 3  |                                         |
+      |             |           |                                         |
+      |             |           |                                         |
+      +----------------> +----+ |                                         |
+                    |    |----| | +--------->----------------------------->
+                    +-----------+
+```
+
+Példa újrafelhasználható kódra
+```
++-----------+
+|           |
+|  Űrlap 1  | +----------------->
+|           |                   |
+|           |                   v
+|           |
+|           |          +-----------------+
++-----------+          |                 |
+                       |  Repository     |      +-------------+
+                       |                 |      |             |
++-----------+          |                 |      |  Adatbázis  |
+|           |          | Adatbázist      |      |             |
+|  Űrlap 2  |          | módosító        |      |             |
+|           +--------> | rész a kódban   +----> |             |
+|           |          |                 |      |             |
+|           |          |                 |      +-------------+
+|           |          |                 |
++-----------+          |                 |
+                       |                 |
+                       +-----------------+
++-----------+
+|           |                   ^
+|  Űrlap 3  |                   |
+|           |                   |
+|           | +----------------->
+|           |
+|           |
++-----------+
+```
