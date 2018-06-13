@@ -1151,3 +1151,7 @@ Előrejelezhető: a folyamat és a termék mennyiségi mérőszámokkal ellenőr
 ##### Optimizing (Level 5)
 Folyamatosan fejlődő. A folyamat részei cserélődnek, a rossz kikerül.
 
+#### IDEAL Model
+[Software Engeneering Institute](https://resources.sei.cmu.edu)
+
+![Az IDEAL Model](images/ideal.png)
