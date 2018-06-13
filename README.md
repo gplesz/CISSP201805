@@ -1188,4 +1188,33 @@ A szervezet elemzi az erőfeszítéseket, és megvizsgálja, elérte-e a kíván
 [Olvasnivaló az IDEAL modelről](http://www.plays-in-business.com/ideal-initiating-diagnosing-establishing-acting-learning/).
 [SEI prezentáció összefoglalása](https://resources.sei.cmu.edu/library/asset-view.cfm?assetid=20208)
 
+### Változáskezelés biztonsági eszközként (Change and Configuration management)
+
+#### Request Control
+- a kérelmeket befogadja
+- költség/haszon elemzés készül
+- priorizálás
+
+#### Change Control
+A fejlesztők
+- elemzik, 
+- alternatívákat állítanak, 
+- ezeket értékelik, 
+- a megoldást fejlesztik,
+- a megoldás telepítéséhez végül eszközt biztosítanak,
+- a megoldást dokumentálják.
+
+#### Release Control
+- ellenőrzi, hogy véletlenül bennehagyott hibakezelési eszközök, debug kapcsolók, naplózások ne maradjanak a megoldásban.
+- ellenőrzi, hogy a megoldás a felhasználók számára megfelelő, használható és érthető.
+
+##### Konfiguráció azonosítása (configuration identification)
+Minden olyan lépés, ami a rendszer állapotán változtat nyomonkövethető ezáltal, egyészen az elejétől a végéig.
+##### Konfiguráció kezelés (configuration control)
+Ez biztosítja, hogy a megoldás a megfelelő szoftververziókat használó rendszerre kerüljön. A megoldás és a környezet frissítései engedélyezett forrásból kell, hogy származzanak.
+##### Konfigurációs állapot nyilvántartása (Configuration status accounting)
+Egyértelműen azonosíthatóvá teszi, hogy a rendszerünkön mi van telepítve.
+##### Konfigurációs felülvizsgálat (Configuration audit)
+Rendszeresen ellenőrizni kell a rendszer állapotát, és biztosítani, hogy ne legyenek nem engedélyezett vagy nem dokumentált változások.
+
 
