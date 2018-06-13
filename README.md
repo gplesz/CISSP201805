@@ -1265,5 +1265,50 @@ Az adott igényeknek való megfelelést vizsgáló teszt.
 ##### Regression test
 Egy-egy változás után vizsgáljuk, hogy a program működőképessége megmaradt-e? (funkciók, biztonsági kérdések, teljesítmény)
 
+### Kódtárak (Repository)
+A kódtárak egy adott könyvtár változásait követik nyomon. Leginkább szöveges állományok kezelésére találták ki, bináris állományok (képek, excel, word, stb. csak külső programokkal és csak korlátozott funkciókkal képes.)
+
+Kétféle típus: [DVCS Distributed Version Control System](https://en.wikipedia.org/wiki/Distributed_version_control) (Elosztott verziókövető rendszerek) és 
+
+- a kódhoz való hozzáférést jól kell szabályozni. Általában írási és olvasási jogosultságot lehet kiosztani.
+
+- kód módosítása különböző workflow-k által mehetnek: git flow, github flow, stb, ez a módosítást egy írási joggal bíró személyhez köti, aki megfelelő kompetenciával rendelkezik a módosítás értékeléséhez. Ha úgy dönt, hogy beemeli a módosításokat, akkor az ő írási jogával ez lehetséges. 
+
+- A jogosultságainkat biztosító titkok NEM KERÜLHETNEK a kódtárba. ld. API
+
+### API (Application Programming Interface)
+Bármely szolgáltatás programból történő elérésére szolgáló felület. Meghatározza, hogy milyen kérésket és milyen formában kérve képes elfogadni kívülről.
+
+Ez lehet egy könyvtárba másolt állomány is, de manapság általában [Rest API-t](https://hu.wikipedia.org/wiki/REST) szoktak adni a szolgáltatók.
+
+Mivel nagyon hatékony a program-program közötti kommunikáció, a hozzáférést védeni kell. Ezt általában valamilyen titokkal szokták megoldani (név+jelszó, api jelszó, token, pl: OAuth2 protokol)
+
+A titok birtokában férek hozzá az API egyes szolgáltatásaihoz.
+
+Ez miért probléma?
+
+- a fejlesztőnek fejlesztés közben használnia kell.
+- a tesztelés közben a tesztrendszernek használnia kell.
+- az éles rendszernek használnia kell.
+
+De ez nem jelenti azt, hogy 
+- a fejlesztőnek
+- a tesztelőnek
+- a felhasználónak
+- a rendszergazdának
+
+ismernie kell.
+
+Egyrészt a titkokat a kódtól függetleníteni kell. Illetve, a konfigurációt (aminek a része a titok is) a kódtól függetleníteni kell.
+
+Másrészt ki kell dolgozni a titkok kezelését, vagyis biztosítani az egyes konfogurációs beállítások eljuttatását az adott futtatókörnyzetre.
+
+Ezt meg lehet oldani a felhőszolgáltató konfigurációs paneljén keresztül, vagy a [docker secret szolgáltatásával](https://docs.docker.com/engine/swarm/secrets/#simple-example-get-started-with-secrets), vagy speciális titok szolgáltatásokon keresztül (pl.: [azure vault](https://azure.microsoft.com/en-us/services/key-vault/)).
+
+
+
+
+
+
 
 
