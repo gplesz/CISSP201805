@@ -1155,3 +1155,37 @@ Folyamatosan fejlődő. A folyamat részei cserélődnek, a rossz kikerül.
 [Software Engeneering Institute](https://resources.sei.cmu.edu)
 
 ![Az IDEAL Model](images/ideal.png)
+
+A model 5 fázisra osztja egy rendszer fejlesztését. Nevét a fázisok kezdőbetűiről kapta. 
+
+##### Kezdeti, indítási fázis (Initiating)
+- az összefüggések meghatározása
+- a támogatás kiépítése
+- az infrastruktúra biztosítása
+
+##### Felmérés (Diagnosing)
+- a jelenlegi és a kívánt állapot meghatározása
+- a fejlesztési javaslatok megtétele
+
+##### Kiépítés (Establishing)
+A hogyan meghatározása: hogyan érje el a szervezet a célját. Itt az előző fázis ajánlásaiból **konkrét cselekvési terv készül**
+- prioritások meghatározása
+- fejlesztési megközelítés (módszertan) meghatározása
+- a tevékenységek megtervezése
+##### Cselekvés (Acting)
+Ebben a fázisban be kell fejezni a beszélgetéseket és látogatásokat. A szervezet **megoldást fejleszt**.
+- megoldás létrehozása
+- tesztje, pilot bevezetése
+- finomítása
+- megvalósítása
+
+##### Tanulás (Learning)
+A szervezet elemzi az erőfeszítéseket, és megvizsgálja, elérte-e a kívánt célokat, és ha szükséges új intézkedések javaslata.
+- Analízis
+- validálás
+- javaslat jövőbeni tevékenységekre.
+
+[Olvasnivaló az IDEAL modelről](http://www.plays-in-business.com/ideal-initiating-diagnosing-establishing-acting-learning/).
+[SEI prezentáció összefoglalása](https://resources.sei.cmu.edu/library/asset-view.cfm?assetid=20208)
+
+
