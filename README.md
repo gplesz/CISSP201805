@@ -1371,6 +1371,159 @@ A szolgáltatási szintet biztosító, a rendszerrel szemben támasztott elvár�
 Ha saját hatáskörben üzemeltetünk (saját hardveren futó saját licenszekkel telepített saját szoftverek) akkor a felelősség a felelősség a természeténél fogva a mienk.
 Ha az üzemeltetéssel szolgáltatót bízunk meg, akkor bár az üzemeltetőé a felelőssége az üzemeltetésnek, a biztonsággal kapcsolatos felelősség továbbra is a mienk: a rendszeres ellenőrzések, felülvizsgálatok és a megfelelő SLA kidolgozásában.
 
+### Szakértői rendszerek (Expert System)
+A gépeket nem terheli emóció, és nem kell "fókuszban" lenniük döntéshozatalhoz, egy jól beállított szakértői rendszer jobb döntéseket képes hozni, mint egy emberi szakértő. 
+
+### Tudásalapú rendszerek (Knowledge base systems)
+
+#### Tudásbázis (Knowledge base)
+Az emberi szakértő tudásának formalizált változata, feltételt tartalmazó állítások sorozata.
+
+- **Ha** a hurrikánnal járó szél sebessége meghaladja a 120 mérföldet, **akkor** a favázas épületek megsemmisülnek.
+- **ha** a hurrikán szezon később kezdődik, **akkor** a vihar erősebb lesz, ha megközelíti a partot.
+- **ha** a hirrikán 4-es vagy affeletti besorolású, **akkor** árvíz eléri a 6 méter magasságot.
+
+#### Következtető motor (Inference engine)
+4-es kategóriájú vihar érkezik
+a szél sebessége most 140 mérföld
+a hurrikán szezon végénél járunk
+===>
+el kell rendelni az evakuálást.
+
+#### Működési módok
+##### Következtető üzemmód (Forward chaining)
+a rendszer a megadott adatokból levonja a következtetéseket.
+
+##### Ellenőrző üzemmód (Backward chaining)
+a végeredmény megadása után megadja, hogy milyen bemeneti adatok kellenének az adott végeredményhez.
+
+#### Technikai megvalósítás
+##### Elmosódott halmazok logikája (Fuzzy logic)
+[wikipédia](https://hu.wikipedia.org/wiki/Elmos%C3%B3dott_halmazok_logik%C3%A1ja)
+- Igazságérték: nincs igaz, vagy hamis, hanem egy adott állításnál azt jelzi, hogy az állítás igazságának mekkora a bizonyossága
+
+például:
+
+```
+                                                                                   +>
+ Igaz                                                                              |
+  ^                                                                       +--------+
+  |                                                                       |
+  |                                                                       |
+  |                                                                       |
+  |                                                               +-------+
+  |                                                               |
+  |                                                               |
+  |                                                               |
+  |                                                        +------+
+  |                                                        |
+  |                                                        |
+  |                                                        |
+  |                                                 +------+
+  |                                                 |
+  |                                                 |
+  |                                                 |
+  |                                                 |
+  |                                         +-------+
+  |                                         |
+  |                                         |
+  |                                         |
+  |                                         |
+  |                                  +------+
+  |                                  |
+  |                                  |
+  |                           +------+
+  |                           |
+  |                           |
+  |                           |
+  |                           +
+  +------5-----10-----15-----20-----25------30-----35-----40------45------50------55-----60---->    Évek száma
+Hamis
+
+              Idős egy adott ember?
+
+```
+- Fuzzification: minden bemenethez (évek száma) és állításhoz (idős az adott ember) az igazszágértéket rendeli
+- Inference: Hozzárendeli az adott állításokhoz és következtetéshez az igazságértéket.
+- Composition: Minden lehetséges szabálycsomagot összeállít
+- Defuzzication: Az adott szabálycsomag igazságértékét számolja ki.
+
+Sikeres implementációk:
+- 1985 Hitachi: japán gyorsvasút fékezőrendszere
+- Altatási mélységszabályozás
+
+##### Mesterséges neuronhálózatok (Artificial neuron network)
+[wikipédia](https://hu.wikipedia.org/wiki/Neur%C3%A1lis_h%C3%A1l%C3%B3zat)
+
+három réteg
+- bemeneti réteg (Input)
+- kimeneti réteg (Output)
+- számítási réteg (Computing)
+
+```
++---------------------------+-------------------------------------------------------------------------+---------------------------+
+|   Bemeneti réteg          |                        Számítási réteg                                  |   Kimeneti réteg          |
+|                           |                                                                         |                           |
+|                           |                                    +---+                                |                           |
+|      +---+         1      |                                    |   |                                |      +---+                |
+|      |   |                |           +---+                    |   |                                |      |   |                |
+|      | 0 +-------------------+----->  |   |                    |   |                                |      |   |                |
+|      |   |                |  |        |   |                    +---+                    +---+       |      |   |                |
+|      +---+                |  |        |   |                                             |   |       |      +---+                |
+|                           |  |        +---+                    +---+                    |   |       |                           |
+|      +---+                |  |   0x1+0x1|1x0=0       ^-------> |   |                    |   |       |      +---+                |
+|      |   |                |  |        +---+          |         |   |                    +---+       |      |   |                |
+|      | 1 |                |  |        |   |          |         |   |                                |      |   |                |
+|      |   |                |  +-+----> | 0 +----------+         +---+                    +---+       |      |   |                |
+|      +---+                |    ^      |   |                                             |   |       |      +---+                |
+|                           |    |      +---+                    +---+                    |   |       |                           |
+|      +---+          1     |    |                               |   |                    |   |       |      +---+                |
+|      |   |                |    |      +---+            ^------^+   |                    +---+       |      |   |                |
+|      | 0 | +----------------------->  |   |            |       |   |                                |      |   |                |
+|      |   |                |    ^      |   | +---------->       +---+                    +---+       |      |   |                |
+|      +---+                |    |      |   |                                             |   |       |      +---+                |
+|                           |    |      +---+                    +---+                    |   |       |                           |
+|      +---+         0      |    |                               |   |                    |   |       |      +---+                |
+|      |   |                |    |      +---+                    |   |                    +---+       |      |   |                |
+|      | 1 | +------------------->      |   |                    |   |                                |      |   |                |
+|      |   |                |           |   |                    +---+                    +---+       |      |   |                |
+|      +---+                |           |   |                                             |   |       |      +---+                |
+|                           |           +---+                    +---+                    |   |       |                           |
+|      +---+         1      |                                    |   |                    |   |       |      +---+                |
+|      |   |                |           +---+                    |   |                    +---+       |      |   |                |
+|      | 1 +--------------------------> |   |                    |   |                                |      |   |                |
+|      |   |                |           |   |                    +---+                    +---+       |      |   |                |
+|      +---+                |           |   |                                             |   |       |      +---+                |
+|                           |           +---+                                             |   |       |                           |
+|                           |                                                             |   |       |                           |
+|                           |                                                             +---+       |                           |
+|                           |                                                                         |                           |
+|                           |                                                                         |                           |
++---------------------------+-------------------------------------------------------------------------+---------------------------+
+```
+A számítási réteg több rétegből állhat.
+
+Egy számítási lépés során a neuronok állapotának és a belőle induló kapcsolatok súlyának a lináris kombinációját vesszük (állapot szorozva a hozzátartozó kapcsolat súlyával, majd ezek összege)
+
+Végül az eredmény rétegen megjelenő adatokat összehasonlítjuk az elvárt ereménnyel (betanítási fázis).
+
+A különbségnek megfelelően változtatjuk a súlyokat, ez a tanítási algoritmus.
+
+Majd a végén a mesterséges neuronhálózat képessé válik a felismerésre.
+
+Sikeres lehet:
+
+- hangfelismerés
+- kézírás felismerés
+- arcfelismerés
+- időjárás előrejelzés
+- összefüggések illetve következmények feltárára.
+
+### DSS Decision Support Systems
+Információt szolgáltató alkalmazások. Gyakran szakértői rendszer van mögötte, biztonsági alkalmazásokban jól teljesítenek.
+
+pl.: Next-Generation Intrusion Detection Expert System (NIDES)
+
 
 
 
