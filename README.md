@@ -1347,6 +1347,32 @@ A korábbi havi/féléves/éves telepítési megszokás helyett akár percenkén
         +---------------------------+
 ```
 
+### SLA Service Level Agreements
+A szolgáltatási szintet biztosító, a rendszerrel szemben támasztott elvárások gyűjteménye.
+
+- Rendelkezésreállás (System Uptime) 
+  % a teljes működési idő százalékában.
+  1 nap = 24 óra = 24 x 60 perc = 1440 perc = 1440 x 60 másodperc = 86400 másodperc.
+  - ennek 1 %-a: 864 másodperc = 14 perc és 24 másodperc.
+  - vagyis, a 99%-os rednelkezésreállás azt jelenti, hogy napi maximum 14perc 24 másodpercet állhat a rendszer.
+  - 99,9%: napi 1 perc 26,4 másodperc leállás
+  - 99.99%: napi maximum 8,64 másodperc leállás
+- Egybefüggő állásidő maximuma (Maximum consecutive downtime) 
+  például max 5 perc.
+- Legnagyobb terhelés (Peak load)
+  - például napi max 5000 felhasználó,
+  - másodpercenként maximum 1000 egyidejű kérés
+- Átlagos terhelés (Average load)
+- Ki felelős a hibakeresésért? (Responsibility for diagnostics)
+- Áthidalási idő (Failover time)
+  - ha van redundancia a rendszerben
+
+### Szoftver beszerzés
+Ha saját hatáskörben üzemeltetünk (saját hardveren futó saját licenszekkel telepített saját szoftverek) akkor a felelősség a felelősség a természeténél fogva a mienk.
+Ha az üzemeltetéssel szolgáltatót bízunk meg, akkor bár az üzemeltetőé a felelőssége az üzemeltetésnek, a biztonsággal kapcsolatos felelősség továbbra is a mienk: a rendszeres ellenőrzések, felülvizsgálatok és a megfelelő SLA kidolgozásában.
+
+
+
 
 
 
