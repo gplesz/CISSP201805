@@ -1305,7 +1305,47 @@ Másrészt ki kell dolgozni a titkok kezelését, vagyis biztosítani az egyes k
 
 Ezt meg lehet oldani a felhőszolgáltató konfigurációs paneljén keresztül, vagy a [docker secret szolgáltatásával](https://docs.docker.com/engine/swarm/secrets/#simple-example-get-started-with-secrets), vagy speciális titok szolgáltatásokon keresztül (pl.: [azure vault](https://azure.microsoft.com/en-us/services/key-vault/)).
 
+### DEVOPS
+Maga a kifejezés két fogalom keresztezése fejlesztés és üzemeltetés:
+Developer és (IT) Operations
 
+Eszerint a megközelítés szerint nincs külön fejlesztés, üzemeltetés és minőségbiztosítás, hanem biztosítani kell egy jó minőségű (minpőségileg biztosított) kockázatmentes, biztonságos üzemeltetést, ami támogatja a fejlesztést nagyon sűrű telepítéssel.
+
+Ez ilyen alkalmazásfejlesztés kialakításához kiváló cikksorozat: [12FactorApp](https://12factor.net/), itt pedig [magyarul](http://netacademia.blog.hu/tags/12FactorApp).
+
+A korábbi havi/féléves/éves telepítési megszokás helyett akár percenként történő telepítés a folyamatos integrációval (CI Continuous Integration).
+
+Összefoglaló ábra:
+
+```
+                         +------------------------------------+
+                         |                                    |
+                         |                                    |
+                         |                                    |
++-----------------------------+                               |
+|                        |    |                               |
+|                        |    |                               |
+|                        |    |                               |
+|     Quality            |    |                               |
+|     Assurance          |    |                               |
+|                        |    |                               |
+|       +---------------------------+                         |
+|       |                |Dev |     |          Software       |
+|       |                |Ops |     |          Development    |
+|       |                |    |     |                         |
+|       |                +------------------------------------+
++-----------------------------+     |
+        |                           |
+        |                           |
+        |    Operations             |
+        |                           |
+        |                           |
+        |                           |
+        |                           |
+        |                           |
+        |                           |
+        +---------------------------+
+```
 
 
 
