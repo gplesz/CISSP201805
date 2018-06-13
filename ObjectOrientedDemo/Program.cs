@@ -31,7 +31,7 @@ namespace ObjectOrientedDemo
         }
     }
 
-    class KamatozoBankszamla : Bankszamla
+    public class KamatozoBankszamla : Bankszamla
     {
         public KamatozoBankszamla(string name) : base(name) {}
 
@@ -46,7 +46,7 @@ namespace ObjectOrientedDemo
         }
     }
 
-    class Bankszamla
+    public class Bankszamla
     {
         private string name;
         public object Nev 

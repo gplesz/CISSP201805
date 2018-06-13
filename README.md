@@ -1217,4 +1217,53 @@ Egyértelműen azonosíthatóvá teszi, hogy a rendszerünkön mi van telepítve
 ##### Konfigurációs felülvizsgálat (Configuration audit)
 Rendszeresen ellenőrizni kell a rendszer állapotát, és biztosítani, hogy ne legyenek nem engedélyezett vagy nem dokumentált változások.
 
+### Szoftver tesztelés
+- ésszerűség ellenőrzés (ha testsúlyt számol az adott rész, akkor nem adhat vissza értelmetlen adatot: pl. 1000kg-ot)
+  ehhez értelmetlen bemeneti adatokkal is tesztelni kell az adott alkalmazást.
+- normál és értelmes adatok esetén is vizsgálni kell az adott szoftver működését.
+- tesztidőszakban éles adatokkal tesztelni nem szabad. A teszteléshez tesztadatokat kell generálni a megadott szempontok szerint.
+  [Egy példa tesztadat generálásra](https://sachabarbs.wordpress.com/2018/06/11/bogus-simple-fake-data-tool/)
+
+#### Tesztelési módszerek
+
+##### Fehér doboz tesztelés (White box testing)
+Ismerjük a rendszer működését és forráskódját, ehhez mérten tudunk tesztelési forgatókönyveket gyártani. (Példa erre a fejlesztői tesztek, illetve, a statikus tesztelés)
+
+##### Fekete dobozos tesztelés (Black box testing)
+Egyáltalán nem ismerjük a rendszer forráskódját. Példa az átvétel előtti megfelelőségi teszt.
+
+##### Szürke dobozos tesztelés (Gray-box testing)
+A tesztek a felhasználó szemszögéből születnek, de a forráskód ismeretét is felhasználhatjuk a tesztek tervezéséhez.
+
+#### biztonsági szempontból 
+
+két féle tesztelési módszer:
+
+##### Statikus tesztelés
+A forráskód rendelkezésre áll. Statikus teszteléskor nem futtatjuk az alkalmazást, le sem feltétlenül fordítjuk.
+
+[lista a statikus tesztelő eszközökről](https://en.wikipedia.org/wiki/List_of_tools_for_static_code_analysis)
+[Példa a PVS Studio használatára](https://adtmag.com/articles/2016/08/18/open-source-bugs.aspx)
+[Példa feltárt hibákra](https://www.viva64.com/en/examples/)
+[Ezt például egy statikus elemző elkapná](http://netacademia.blog.hu/2017/06/14/fejlesztok_egy_erdekes_hiba_az_apple_hazatajarol_a_nem_is_olyan_regmultbol)
+
+##### Dinamikus tesztelés
+Telepített alkalmazás segítségével "élő" alkalmazást tesztelünk. Minél jobban hasonlít a tesztkörnyezet az üzemeltetési környezet annál erősebb a validációja egy ilyen tesztnek.
+
+Erre példa, ha különböző sebezhetőségeket feltáró alkalmazást futtatunk az elkészült termékre. Példa: [Detectify](https://detectify.com/)
+
+#### Teszt típusok
+##### Unit test
+Egy jól körbehatárolható kód valamennyi fűggőségét a tesztkörnyezet biztosítja, így az kizárólag adott kód működését vizsgálja.
+
+##### Integration test
+Egy adott program vagy programrész működését és együttműködését vizsgáljuk.
+
+##### Acceptance test (UAT: User Acceptance Test)
+Az adott igényeknek való megfelelést vizsgáló teszt.
+
+##### Regression test
+Egy-egy változás után vizsgáljuk, hogy a program működőképessége megmaradt-e? (funkciók, biztonsági kérdések, teljesítmény)
+
+
 
