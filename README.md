@@ -1374,6 +1374,9 @@ Ha az üzemeltetéssel szolgáltatót bízunk meg, akkor bár az üzemeltetőé 
 ### Szakértői rendszerek (Expert System)
 A gépeket nem terheli emóció, és nem kell "fókuszban" lenniük döntéshozatalhoz, egy jól beállított szakértői rendszer jobb döntéseket képes hozni, mint egy emberi szakértő. 
 
+[
+Sully - Csoda a Hudson folyón](https://port.hu/adatlap/film/mozi/sully-csoda-a-hudson-folyon-sully/movie-177053)
+
 ### Tudásalapú rendszerek (Knowledge base systems)
 
 #### Tudásbázis (Knowledge base)
